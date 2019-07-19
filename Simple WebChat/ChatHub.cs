@@ -15,33 +15,27 @@ namespace Simple_WebChat
         {
             if (name != DB.User.Where(k => k.UserName == name).FirstOrDefault().UserName.ToString())
             {
-                home.Login();
+                home.Index();
             }
         }
 
         public void Send(string name, string message)
         {
-            // Call the addNewMessageToPage method to update clients.
+           
             int userId = 0;
 
-            //if (name != DB.User.Where(k => k.UserName == name).FirstOrDefault().UserName.ToString())
-            //{
-            //    home.Login();
-            //}
-            //else
-            //{
                 userId = DB.User.Where(k => k.UserName == name).FirstOrDefault().UserId;
                 DB.Mesaj.Add(new Models.Mdl.Mesajlar
                 {
                     Mesaj = message,
-                    UserId = userId
+                    UserId = userId,
+                    MesajTarih=DateTime.Now.Date.ToShortDateString(),
+                    MesajSaat=DateTime.Now.TimeOfDay,
                 });
 
                 DB.SaveChanges();
-            //}
 
-
-
+            // Call the addNewMessageToPage method to update clients.
             Clients.All.addNewMessageToPage(name, message);
         }
     }

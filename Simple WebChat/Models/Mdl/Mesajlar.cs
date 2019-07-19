@@ -9,6 +9,8 @@ namespace Simple_WebChat.Models.Mdl
     {
         public int MesajlarId { get; set; }
         public string Mesaj { get; set; }
+        public string MesajTarih { get; set; }
+        public TimeSpan MesajSaat { get; set; }
         public int UserId { get; set; }
         public virtual Users User { get; set; }
     }

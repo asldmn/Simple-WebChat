@@ -18,7 +18,7 @@ namespace Simple_WebChat.Controllers
             return View(DB.Mesaj.ToList());
         }
 
-        public ActionResult Login()
+        public ActionResult Index()
         {
             if (!DB.Database.Exists())
             {
@@ -29,7 +29,7 @@ namespace Simple_WebChat.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string KullaniciAdi, string KullaniciEmail)
+        public ActionResult Index(string KullaniciAdi, string KullaniciEmail)
         {
             Users user = DB.User.Where(k => k.UserName == KullaniciAdi || k.Email == KullaniciEmail).FirstOrDefault();
             
